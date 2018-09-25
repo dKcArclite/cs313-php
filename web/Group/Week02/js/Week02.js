@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     $("#btnClickMe").button().click(function () {
-        alert("You have cliked the click me button!");
+        alert("You have clicked the click me button!");
     });
 
     $("#btnChangeColor").button().click(function () {
