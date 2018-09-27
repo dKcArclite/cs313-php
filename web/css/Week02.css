@@ -1,0 +1,40 @@
+﻿body {
+	font-family: Arial;
+	font-size:14pt;
+}
+.contentHeaderDiv {
+	color: #124071;
+	display:block;
+	text-align: center;
+    color: #124071;
+	margin-bottom: 10px;
+	font-family: Arial;
+	font-size: 18pt;
+	font-weight: bold;
+}
+.contentDiv {
+	border: 1px solid;
+	color: #124071;
+	padding: 10px;
+	margin: 0px 0px 25px 0px;
+}
+.contentDiv:hover {
+	font-weight:bold;
+}
+.contentDiv p {
+	text-align:center;
+	font-family: Garamond;
+	font-size: 100%;
+}
+h1 {
+	font-family: 'Times New Roman';
+}
+.divSubhead {
+	font-family: 'Times New Roman';
+	font-size: 12pt;
+	text-align:center;
+	padding: 10px;
+	border: 1px solid;
+	color: #124071;
+	margin-bottom: 10px;
+}
