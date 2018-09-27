@@ -22,7 +22,7 @@ Week 02 Assignment
 <?php
 function current_url($strType)
 {
-	$url      = "http://" . $_SERVER['HTTP_HOST'] ."/PHPTest/web/" .$strType ."/Week";
+	$url      = "http://" . $_SERVER['HTTP_HOST'] ."/" .$strType ."/Week";
 	$validURL = str_replace("&", "&amp", $url);
 	return $validURL;
 }
