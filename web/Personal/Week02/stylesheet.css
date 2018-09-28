@@ -1,0 +1,55 @@
+body {
+	font-family: Verdana, Arial, sans-serif;
+	color: #F0F8FF;
+	background: #000000 url('images/texture.jpg');
+}
+#wrapper {
+	width:960px;
+	margin:auto;
+}
+#left-column {
+	float:left;
+	width:320px;
+}
+#center-column {
+	float:left;
+	width:320px;
+}
+#right-column {
+	float:right;
+	width:320px;
+}
+h1 {
+		color:#ffb366;
+		font-family: 'Audiowide', cursive;
+		text-transform: uppercase;
+		text-shadow: 1px 3px 3px #ffffff; 
+}
+h2	{
+		color:#ff9933;
+		font-family: 'Audiowide', cursive;
+		font-size: 15pt;
+	}
+.image {
+		border: 1px solid #585858;
+		text-align:center;
+		font-size: 70%;
+		padding:4px;
+		width: 300px;
+		color: #848484;
+		margin:auto;
+	}
+.galleria{ 
+	width: 900px; 
+	height: 550px; 
+	background: #000;
+	margin:auto;
+}
+.widecolumn {
+	width:960px;
+	text-align:center;
+}
+.note {
+	font-size:small;
+	font-style:italic;
+}
