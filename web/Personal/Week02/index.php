@@ -10,12 +10,16 @@
 <script src="galleria/galleria-1.3.5.min.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Audiowide|Noto+Sans' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
-
+<link type="text/css" rel="stylesheet" href="../../css/nav.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
+<?php
+	include '../../includes/nav.php';
+	
+?>
 <div class="container-fluid">
 <div id="wrapper">
 <div id="header">

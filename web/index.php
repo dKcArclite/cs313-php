@@ -7,12 +7,15 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Allerta Stencil' rel='stylesheet'>
   <link href="./css/Week02.css" rel="stylesheet" />
   <script src="./js/Week02.js"></script>
 </head>
 <body>
 <form>
-<div class="container-fluid">
+<div class="container">
 <div class="row-fluid">
 <div class="contentHeaderDiv col-sm-12">       
 Week 02 Assignment	  
@@ -83,9 +86,11 @@ do {
     $x++;
 } while ($x <= 14);
 ?>
- 
 
 </div>
+<?php
+	include 'includes/footer.php';
+?>
 </form>
 </body>
 </html> 
