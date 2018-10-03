@@ -1,0 +1,23 @@
+﻿body {
+	font-family: Arial;
+	font-size:14pt;
+}
+.contentDiv {
+	border: 1px solid;
+	color: #124071;
+	display:inline-block;
+	width: 500px;
+	padding: 10px;
+	margin: 0px 5px 25px 0px;
+}
+.contentDiv:hover {
+	font-weight:bold;
+}
+.contentDiv p {
+	text-align:center;
+	font-family: Garamond;
+	font-size: 100%;
+}
+h1 {
+	font-family: 'Times New Roman';
+}

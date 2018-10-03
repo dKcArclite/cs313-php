@@ -1,0 +1,45 @@
+﻿/* Style the navigation bar */
+.nav {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+  background: #083b25; /* Old browsers */
+  background: -moz-linear-gradient(top, #083b25 0%, #135e5e 50%, #083b25 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #083b25 0%,#135e5e 50%,#083b25 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #083b25 0%,#135e5e 50%,#083b25 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#083b25', endColorstr='#083b25',GradientType=0 ); /* IE6-9 */
+  margin:0px;
+}
+
+/* Navbar links */
+.nav a {
+  float: right;
+  text-align: center;
+  padding: 12px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 11px;
+  text-transform:uppercase;
+}
+
+/* Navbar links on mouse-over */
+.nav a:hover {
+  background-color: #073233;
+}
+
+/* Current/active navbar link */
+.active {
+  background-color: #3e8787;
+}
+
+a.active {
+ color: #ffb366;
+}
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+@media screen and (max-width: 500px) {
+  .nav a {
+    float: none;
+    display: block;
+  }
+}
