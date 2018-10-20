@@ -7,44 +7,18 @@ include 'BooksDB.php';
 use SQLData\BooksDB as BooksDB;
 use PostgreSQL\Connection as Connection;
 
-//if (!empty($_POST['btnView'])) {
-//    $book_id = htmlspecialchars($_POST['btnView']);
-
-
-if(!empty($_SESSION["Book_Id"]))
-{
-    unset($_SESSION["Book_Id"]);
-    $_SESSION["Book_Id"];
-    header("Location: View.php");
-    die();
-}
-//}
-
 $book_id = 0;
-//if(!empty($_SESSION["book_id"])) {
-//    $book_id = $_SESSION["book_id"];
+$author_id = 0;
+
+
+//if(isset($_POST['function2call']) && !empty($_POST['function2call'])) {
+//    $function2call = $_POST['function2call'];
+//    switch($function2call) {
+//        case 'get_series_ajax' :
+//            $author_id = $_POST['author_id'];
+//            $seriesData = get_data_by_id('get_series', $author_id);
+//    }
 //}
-//else
-//{
-//    //header("Location: Error.php");
-//    //die();
-//    $book_id = 5;
-//}
-
-try {
-    // connect to the PostgreSQL database
-    $pdo = Connection::get()->get_db();
-    //
-    $bookDB = new BooksDB($pdo);
-    // get all books data
-    $books = $bookDB->get_book($pdo, $book_id);
-
-    $author_id = $books[0]['Author_Id'];
-
-}
-catch (\PDOException $e) {
-    echo $e->getMessage();
-}
 
 function get_data($data)
 {
@@ -82,31 +56,19 @@ function get_data_by_id($data, $id)
 	return $arr;
 }
 
-//function get_authors()
-//{
-//    $authors = [];
-//    try {
-//        // connect to the PostgreSQL database
-//        $pdo = Connection::get()->get_db();
-//        //
-//        $bookDB = new BooksDB($pdo);
-//        // get all books data
-//        $authors = $bookDB->get_authors($pdo);
-//    }
-//    catch (\PDOException $e) {
-//        echo $e->getMessage();
-//    }
-
-//    return $authors;
-//}
-
-//$authorsData = get_authors();
-
 $authorsData = get_data('get_authors');
 $formatsData = get_data('get_formats');
 $genresData = get_data('get_genres');
-// TODO: only load if in series (make dynamic for edit)
-$seriesData = get_data_by_id('get_series', $author_id);
+//$seriesData = get_data_by_id('get_series',$author_id);
+
+$seriesData = get_data('get_series_all');
+
+//if($author_id > 0)
+//{
+//    $seriesData = get_data_by_id('get_series', $author_id);
+//}
+//$seriesData = get_data('get_series_all');
+
 ?>
 <html>
 <head>
@@ -140,17 +102,18 @@ $seriesData = get_data_by_id('get_series', $author_id);
 		          data: authors,
 			      selectOnClose: true,
 			      tags: true,
-			      width: "15%",
-			      placeholder: "Select",
+			      width: "12%",
+			      placeholder: "Select Author",
 			      allowClear: true
+
 		    });
 
 		    $('#Formats').select2({
 		          data: formats,
 			      selectOnClose: true,
 			      tags: true,
-			      width: "15%",
-			      placeholder: "Select",
+			      width: "8%",
+			      placeholder: "Select Format",
 			      allowClear: true
 		    });
 
@@ -158,8 +121,8 @@ $seriesData = get_data_by_id('get_series', $author_id);
 		        data: genres,
 		        selectOnClose: true,
 		        tags: true,
-		        width: "15%",
-		        placeholder: "Select",
+		        width: "16%",
+		        placeholder: "Select Genre",
 		        allowClear: true
 		    });
 
@@ -167,15 +130,42 @@ $seriesData = get_data_by_id('get_series', $author_id);
 		        data: series,
 		        selectOnClose: true,
 		        tags: true,
-		        width: "15%",
-		        placeholder: "Select",
+		        width: "10%",
+		        placeholder: "Select Series",
 		        allowClear: true
 		    });
 
-		    $('#Authors').val(authorid).trigger("change")
-		    $('#Formats').val(formatid).trigger("change")
-		    $('#Genres').val(genreid).trigger("change")
-		    $('#Series').val(seriesid).trigger("change")
+		    $('#Authors').val(authorid).trigger("change");
+		    $('#Formats').val(formatid).trigger("change");
+		    $('#Genres').val(genreid).trigger("change");
+		    $('#Series').val(seriesid).trigger("change");
+
+		    //$('#Authors').change(function() {
+		    //    var id = $('#Authors').val();
+		    //    //alert(id);
+		    //    $.ajax({ url: 'Add.php',
+		    //        dataType: "json",
+		    //        data: {function2call: 'get_series_ajax', author_id:id},
+		    //        type: 'post',
+		    //        success: function() {
+		    //            setSeries();
+		    //        }
+		    //    });
+		    //});
+
+		    //function setSeries()
+		    //{
+        	////	
+
+		    //    $('#Series').select2({
+		    //        data: series,
+		    //        selectOnClose: true,
+		    //        tags: true,
+		    //        width: "10%",
+		    //        placeholder: "Select Series",
+		    //        allowClear: true
+		    //    });
+		    //}    
 		});
 
     </script>
@@ -188,97 +178,98 @@ $seriesData = get_data_by_id('get_series', $author_id);
         </div>
         <div class="searchbar"></div>
     </div>
-    <form class="form-horizontal">
+    <form class="form-horizontal" method="post">
         <div class="container">
             <br />
-            <?php if (count($books)): ?>
-            <?php foreach ($books as $key => $book): ?>
             <fieldset>
                 <div class="form-group">
                     <label class="control-label" for="title">
-                        Title: <?php echo htmlspecialchars($book['Title']); ?>
+                        Title:
                     </label>
-                    <input id="title" type="text" value="<?php echo htmlspecialchars($book['Title']); ?>" />
+                    <input id="title" type="text" value="" />
                     <br />
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="author">
                         Author:
                     </label>
-                    <div class="controls">
-                        <input id="authorid" type="hidden" value="<?php echo htmlspecialchars($book['Author_Id']); ?>" />
-                        <select name="Authors" id="Authors"></select>
-                    </div>
+                    <input id="authorid" type="hidden" value="" />
+                    <select name="Authors" id="Authors"></select>
                     <br />
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="format">
-                        Format: <?php echo htmlspecialchars($book['Format']); ?>
+                        Format:
                     </label>
-                    <input id="formatid" type="hidden" value="<?php echo htmlspecialchars($book['Format_Id']); ?>" />
+                    <input id="formatid" type="hidden" value="" />
                     <select name="Formats" id="Formats"></select>
                     <br />
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="genre">
-                        Genre: <?php echo htmlspecialchars($book['Genre']); ?>
+                        Genre:
                     </label>
-                    <input id="genreid" type="hidden" value="<?php echo htmlspecialchars($book['Genre_Id']); ?>" />
+                    <input id="genreid" type="hidden" value="" />
                     <select name="Genres" id="Genres"></select>
                     <br />
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="in_series">
-                        In Series: <?php echo htmlspecialchars($book['In_Series']); ?>
+                        In Series:
                     </label>
+                 <input id="in_series" type="checkbox" />
                     <br />
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="series">
-                        Series: <?php echo htmlspecialchars($book['Series']); ?>
+                        Series:
                     </label>
-                    <input id="seriesid" type="hidden" value="<?php echo htmlspecialchars($book['Series_Id']); ?>" />
+                    <input id="seriesid" type="hidden" value="" />
                     <select name="Series" id="Series"></select>
                     <br />
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="number_in_series">
-                        Number in Series: <?php echo htmlspecialchars($book['Number_In_Series']); ?>
+                        Number in Series:
                     </label>
+                    <input id="number" type="text" value="" />
                     <br />
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="isbn">
-                        ISBN: <?php echo htmlspecialchars($book['ISBN']); ?>
+                        ISBN:
                     </label>
+                    <input id="isbn" type="text" value="" />
                     <br />
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="pages">
-                        Pages: <?php echo htmlspecialchars($book['Pages']); ?>
+                        Pages:
                     </label>
+                    <input id="pages" type="text" value="" />
                     <br />
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="copywrite">
-                        Copyright: <?php echo htmlspecialchars($book['Copywrite']); ?>
+                        Copyright:
                     </label>
+                    <input id="copyright" type="text" value="" />
                     <br />
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="description">
-                        Description: <?php echo htmlspecialchars($book['Description']); ?>
+                        Description:
                     </label>
+                    <input id="description" type="text" value="" />
                     <br />
                 </div>
 
             </fieldset>
-            <?php endforeach; ?>
-            <?php endif; ?>
+            <div class="button-bar">
+                <a href="List.php" class="btn btn-small btn-info button" role="button">Back to List</a>
+                <!--<a href="Edit.php" class="btn btn-small btn-primary button" role="button" type="submit" name="Save">Save</a>-->
+            </div>
         </div>
     </form>
-
-
-
 </body>
 </html>

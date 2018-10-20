@@ -84,19 +84,6 @@ function get_data_by_id($data, $id)
 	return $arr;
 }
 
-function setCheckBox($sValue)
-{
-    if(sValue == 'YES')
-    {
-        return '<input id="in_series" type="checkbox" checked>" />';
-    }
-    else
-    {
-        return '<input id="in_series" type="checkbox">" />';
-    }
-
-}
-
 $authorsData = get_data('get_authors');
 $formatsData = get_data('get_formats');
 $genresData = get_data('get_genres');
@@ -230,7 +217,7 @@ $seriesData = get_data_by_id('get_series', $author_id);
 						In Series: 
 					</label>
                     <?php
-                        if(htmlspecialchars($book['In_Series'])=="NO")
+                        if(htmlspecialchars($book['In_Series'])=="YES")
                         {
                     ?>
                             <input id="in_series" type="checkbox" checked/>
@@ -295,7 +282,7 @@ $seriesData = get_data_by_id('get_series', $author_id);
 	<?php endif; ?>
 		<div class="button-bar">
 		<a href="List.php" class="btn btn-small btn-info button" role="button">Back to List</a>
-		<a href="Edit.php" class="btn btn-small btn-primary button" role="button" type="submit" name="Save">Save</a>
+		<!--<a href="Edit.php" class="btn btn-small btn-primary button" role="button" type="submit" name="Save">Save</a>-->
 	</div>
 </div>
  </form>

@@ -193,4 +193,24 @@ class BooksDB
         }
         return $series;
     }
+
+    public function get_series_ajax($pdo, $author_id) {
+        $stmt =$pdo->prepare('SELECT DISTINCT '
+                                .' s.series_id, '
+                                .' s.series '
+                          .'  FROM series s '
+                          .' WHERE s.author_id=:author_id '
+                          .' ORDER BY '
+                          .'       s.series');
+        $stmt->execute(array(':author_id' => $author_id));
+        $series = [];
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $series[] = [
+              'id' => $row['series_id'],
+            'text' => $row['series']
+                         ];
+        }
+        // return $series;
+        return json_encode($series);
+    }
 }
