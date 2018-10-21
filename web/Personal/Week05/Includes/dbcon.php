@@ -16,9 +16,6 @@ class Connection {
             $dbUrl = getenv('DATABASE_URL');
 
             if (!isset($dbUrl) || empty($dbUrl)) {
-                //$dbUrl = "postgres://postgres:Cmwalpha1@localhost:5432/postgres";
-                //$dbUrl = "postgres://".$locuser.":".$locpword."@".$lochost.":".$port."/".$locdb;
-                //$dbUrl = "postgres://user:password@localhost:5432/database";
 
                 $params = parse_ini_file('dbconfig.ini');
                 if ($params === false) {
