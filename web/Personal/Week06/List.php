@@ -53,7 +53,9 @@ if (isset($_POST['btnView']) && !empty($_SESSION["Book_Id"])) {
 			<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
             <script>
                 $(document).ready(function() {
-                    $('#books').dataTable();
+                    $('#books').DataTable({
+                        "order": [[1, "asc"]]
+                    });
                 });
             </script>	
 </head>

@@ -38,7 +38,7 @@ $genresData = Common::get_data('get_genres');
             var authors = <?php echo json_encode($authorsData); ?>;
 			var formats = <?php echo json_encode($formatsData); ?>;
             var genres = <?php echo json_encode($genresData); ?>;
-			var series;
+		    var series;// = <?php echo json_encode($seriesData); ?>;
 
 		    var authorid = $('#authorid').val();
 		    var formatid = $('#formatid').val();

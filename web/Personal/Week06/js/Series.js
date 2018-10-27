@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+    $('#series').DataTable({
+        "order": [[1, "asc"]]
+    });
 
     var table = $('#series').DataTable();
 

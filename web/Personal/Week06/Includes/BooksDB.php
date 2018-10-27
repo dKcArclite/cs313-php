@@ -32,8 +32,7 @@ class BooksDB
                                .'  LEFT JOIN series s '
                                .'    ON b.series_id = s.series_id '
                                .' ORDER BY '
-                               .'       s.series, '
-                               .'       b.number_in_series');
+                               .'       b.title ');
         $books = [];
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $books[] = [

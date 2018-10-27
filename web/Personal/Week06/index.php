@@ -2,7 +2,8 @@
 session_start();
 
 require 'Includes/dbcon.php';
-include 'BooksDB.php';
+include 'Includes/BooksDB.php';
+include 'Includes/Common.php';
 
 use SQLData\BooksDB as BooksDB;
 use PostgreSQL\Connection as Connection;
@@ -52,7 +53,9 @@ if (isset($_POST['btnView']) && !empty($_SESSION["Book_Id"])) {
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
     <script>
                 $(document).ready(function() {
-                    $('#books').dataTable();
+                    $('#books').DataTable({
+                        "order": [[1, "asc"]]
+                    });
                 });
     </script>
 </head>
@@ -149,6 +152,5 @@ if (isset($_POST['btnView']) && !empty($_SESSION["Book_Id"])) {
             </table>
         </form>
     </div>
-
 </body>
 </html>

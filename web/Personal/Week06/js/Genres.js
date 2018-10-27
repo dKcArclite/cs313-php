@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
-
+    $('#genres').DataTable({
+        "order": [[1, "asc"]]
+    });
     var table = $('#genres').DataTable();
 
     $('#genres tbody').on('click', 'tr', function () {
