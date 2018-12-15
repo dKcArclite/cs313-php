@@ -20,7 +20,7 @@ $author_id = htmlspecialchars($_POST["author_id"]);
 $format_id = (integer)htmlspecialchars($_POST["format_id"]);
 $genre_id = (integer)htmlspecialchars($_POST["Genres"]);
 $is_series = htmlspecialchars($_POST["in_series_hid"]);
-$series_id = htmlspecialchars($_POST["series_id"]);
+$series_id = htmlspecialchars($_POST["Series"]);
 $number_in_series = (integer)htmlspecialchars($_POST["number_in_series"]);
 $isbn = htmlspecialchars($_POST["isbn"]);
 $pages = (integer)htmlspecialchars($_POST["pages"]);
@@ -46,7 +46,7 @@ else
     $series_id = (integer)$series_id;
 }
 
-if($series_id = 0)
+if($is_series = 'false')
 {
     $series_id = 0;
     $number_in_series = 0;
@@ -57,7 +57,7 @@ $array = array (
 	            'author_id' => trim($author_id),
 	            'genre_id' => trim($genre_id),
 	            'format_id' => trim($format_id),
-	            'is_series' => $is_series,
+	            'is_series' => (boolean)$is_series,
 	            'series_id' => trim($series_id),
 	            'number_in_series' => trim($number_in_series),
 	            'title' => trim($title),

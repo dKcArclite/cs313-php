@@ -215,7 +215,7 @@ $genresData = Common::get_data('get_genres');
                             </label>
                         </div>
                         <input id="seriesid" type="hidden" />
-                        <select name="series_id" id="Series" required></select>
+                        <select name="Series" id="Series" required></select>
                     </div>
                     <div class="form-group SeriesGroup">
                         <label for="number_in_series">
