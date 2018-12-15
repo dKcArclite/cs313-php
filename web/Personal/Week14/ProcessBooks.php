@@ -46,11 +46,11 @@ else
     $series_id = (integer)$series_id;
 }
 
-if($is_series = 'false')
-{
-    $series_id = 0;
-    $number_in_series = 0;
-}
+//if($is_series = 'false')
+//{
+//    $series_id = 0;
+//    $number_in_series = 0;
+//}
 
 $array = array (
                 'book_id' => trim($book_id),
